@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<tr th:each="temp : ${temperature}">
+    <td th:text="${temp.date}></td>
+    <td th:text="${temp.temperature}></td>
+    <td th:text="${temp.humidity}></td>
+    <br/>
+</tr>
+
+
+
+</body>
+</html>

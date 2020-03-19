@@ -10,4 +10,7 @@ public class HumiditysensorApplication {
         SpringApplication.run(HumiditysensorApplication.class, args);
     }
 
+
+    //Arduino based humidity sensor which sends data to Heroku server and is visualized with React frontend.
+
 }

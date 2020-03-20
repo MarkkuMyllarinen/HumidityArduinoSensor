@@ -17,9 +17,6 @@ public class SensorData {
     private Double temperature;
     private Double humidity;
 
-    public SensorData() {
-    }
-
     public SensorData(Date date, Double temperature, Double humidity) {
         this.date = date;
         this.temperature = temperature;
@@ -57,5 +54,15 @@ public class SensorData {
 
     public void setHumidity(Double humidity) {
         this.humidity = humidity;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorData{" +
+                "id=" + id +
+                ", date=" + date +
+                ", temperature=" + temperature +
+                ", humidity=" + humidity +
+                '}';
     }
 }

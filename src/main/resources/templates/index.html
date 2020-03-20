@@ -5,16 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<table>
 
-    <tr th:each="temp : ${temperature}">
-        <td th:text="${temp.date}"></td>
-    <td th:text=" ${temp.temperature}></td>
-        <td th:text="${temp.humidity}></td>
-    <br/>
-</tr>
 
-</table>
+<div th:text="${temp}"></div>
 
 </body>
 </html>

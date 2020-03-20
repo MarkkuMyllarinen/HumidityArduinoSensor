@@ -17,6 +17,9 @@ public class SensorData {
     private Double temperature;
     private Double humidity;
 
+    public SensorData() {
+    }
+
     public SensorData(Date date, Double temperature, Double humidity) {
         this.date = date;
         this.temperature = temperature;

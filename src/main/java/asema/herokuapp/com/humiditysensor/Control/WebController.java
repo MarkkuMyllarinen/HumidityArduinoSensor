@@ -44,6 +44,16 @@ public class WebController {
         model.addAttribute("list", list);
         return "listall";
     }
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String getErrorPage() {
+        return "error";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getDefaultPage() {
+        return "listall";
+    }
+
 
     //API's
 

@@ -12,7 +12,7 @@ public class SensorData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String stringTime;
     private Date date;
     private Double temperature;
     private Double humidity;
@@ -21,9 +21,10 @@ public class SensorData {
     public SensorData() {
     }
 
-    public SensorData(Date date, Long unixTime, Double temperature, Double humidity) {
+    public SensorData(Date date, Long unixTime, String stringTime, Double temperature, Double humidity) {
         this.date = date;
         this.unixTime = unixTime;
+        this.stringTime = stringTime;
         this.temperature = temperature;
         this.humidity = humidity;
     }
@@ -69,10 +70,19 @@ public class SensorData {
         this.unixTime = unixTime;
     }
 
+    public String getStringTime() {
+        return stringTime;
+    }
+
+    public void setStringTime(String stringTime) {
+        this.stringTime = stringTime;
+    }
+
     @Override
     public String toString() {
         return "SensorData{" +
                 "id=" + id +
+                ", stringTime='" + stringTime + '\'' +
                 ", date=" + date +
                 ", temperature=" + temperature +
                 ", humidity=" + humidity +

@@ -1,6 +1,7 @@
 package asema.herokuapp.com.humiditysensor.Control;
 
 import asema.herokuapp.com.humiditysensor.Model.SensorData;
+import asema.herokuapp.com.humiditysensor.Model.Time;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,10 @@ public class WebController {
     @RequestMapping(value = "/newdata/{temp}/{humi}", method = RequestMethod.GET)
     public String getEditBookForm(@PathVariable Double temp, @PathVariable Double humi) {
 
-        logger.info("temp: " + temp + "    humidity: " + humi);
+        Time time = new Time();
+        logger.info("temp: " + temp + "    humidity: " + humi + "Time: " + time.getTime());
 
-        sensorRepository.save(new SensorData(new Date(), Instant.now().getEpochSecond(), temp, humi));
+        sensorRepository.save(new SensorData(new Date(), Instant.now().getEpochSecond(), time.getTime(), temp, humi));
 
         return "redirect:/list";
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,11 +25,11 @@ public class WebController {
     SensorRepository sensorRepository;
 
     @RequestMapping(value = "/newdata/{temp}/{humi}", method = RequestMethod.GET)
-    public String getEditBookForm(@PathVariable Double temp,@PathVariable Double humi) {
+    public String getEditBookForm(@PathVariable Double temp, @PathVariable Double humi) {
 
         logger.info("temp: " + temp + "    humidity: " + humi);
 
-        sensorRepository.save(new SensorData(new Date(), temp,humi));
+        sensorRepository.save(new SensorData(new Date(), Instant.now().getEpochSecond(), temp, humi));
 
         return "redirect:/list";
     }
@@ -41,7 +42,8 @@ public class WebController {
         model.addAttribute("list", list);
         return "listall";
     }
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)  //TODO Do proper error page and error handling
     public String getErrorPage() {
         return "error";
     }
@@ -57,10 +59,21 @@ public class WebController {
     @CrossOrigin
     @RequestMapping(value = "/datalist", method = RequestMethod.GET)
     public @ResponseBody
-    List<SensorData> bookListRest() {
+    List<SensorData> getAll() {
         return (List<SensorData>) sensorRepository.findAll();
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/datalist/{value}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SensorData> getLimitedToValue(@PathVariable int value) {
+        List<SensorData> list = (List<SensorData>) sensorRepository.findAll();
+        List<SensorData> lastItems = new ArrayList<>();
+        for (int i = list.size(); i > list.size() - value; i--) {
+            lastItems.add(list.get(i - 1));
+        }
+        return lastItems;
+    }
 
 
 }

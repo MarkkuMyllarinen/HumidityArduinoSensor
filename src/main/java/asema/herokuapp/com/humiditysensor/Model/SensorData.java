@@ -16,12 +16,14 @@ public class SensorData {
     private Date date;
     private Double temperature;
     private Double humidity;
+    private Long unixTime;
 
     public SensorData() {
     }
 
-    public SensorData(Date date, Double temperature, Double humidity) {
+    public SensorData(Date date, Long unixTime, Double temperature, Double humidity) {
         this.date = date;
+        this.unixTime = unixTime;
         this.temperature = temperature;
         this.humidity = humidity;
     }
@@ -59,6 +61,14 @@ public class SensorData {
         this.humidity = humidity;
     }
 
+    public Long getUnixTime() {
+        return unixTime;
+    }
+
+    public void setUnixTime(Long unixTime) {
+        this.unixTime = unixTime;
+    }
+
     @Override
     public String toString() {
         return "SensorData{" +
@@ -66,6 +76,7 @@ public class SensorData {
                 ", date=" + date +
                 ", temperature=" + temperature +
                 ", humidity=" + humidity +
+                ", unixTime=" + unixTime +
                 '}';
     }
 }
